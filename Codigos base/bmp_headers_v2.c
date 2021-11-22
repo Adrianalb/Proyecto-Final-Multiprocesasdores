@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "omp.h"
 
 int main()
 {
     FILE *image, *outputImage, *lecturas;
     image = fopen("sample.bmp","rb");          //Imagen original a transformar
-    outputImage = fopen("img1_dd.bmp","wb");    //Imagen transformada
+    outputImage = fopen("img3_dd.bmp","wb");    //Imagen transformada
     long ancho;
     long alto;
     unsigned char r, g, b;               //Pixel
@@ -39,7 +40,8 @@ int main()
 
       cuenta++;
 
-    }                                        //Grises
+    }
+    const double startTime = omp_get_wtime();                                        //Grises
     cuenta = ancho;
     for (int i = 1; i < (alto*ancho*3)-1; ++i) {
       fputc(ptr[i+1], outputImage);
@@ -54,5 +56,9 @@ int main()
     free(ptr);
     fclose(image);
     fclose(outputImage);
+
+    const double endTime = omp_get_wtime();
+    printf("tomo (%lf) segundos\n", (endTime - startTime));
+
     return 0;
 }
