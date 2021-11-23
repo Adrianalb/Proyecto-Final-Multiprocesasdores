@@ -1,15 +1,12 @@
-//Se encuentran las librerías utilizadas
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "omp.h"
 
-//Se define el número de threads
-#define NUM_THREADS 1
+#define NUM_THREADS 8
 
 int main()
 {
-    //Se definen todas las variables a usar
     omp_set_num_threads(NUM_THREADS);
     FILE *image, *outputImage, *lecturas;
     const double startTime = omp_get_wtime();
@@ -65,14 +62,10 @@ int main()
           for(int h = -w_k; h <= w_k ; h++){
             x = i+(ancho*h); 
             partial= partial + ( ptr[i - 13] + ptr[i - 12]+ ptr[i - 11] + ptr[i - 10] + ptr[i - 9]+ ptr[i - 8] + ptr[i - 7] + ptr[i - 6]+ ptr[i - 5] + ptr[i - 4] + ptr[i - 3] + ptr[i - 2] +  ptr[i - 1] + ptr[i] + ptr[i + 13] + ptr[i + 12]+ ptr[i + 11] + ptr[i + 10] + ptr[i + 9]+ ptr[i + 8] + ptr[i + 7] + ptr[i + 6]+ ptr[i + 5] + ptr[i + 4] + ptr[i + 3] + ptr[i + 2] +  ptr[i + 1]);
-            //partial= partial + (ptr[i - 7] + ptr[i - 6]+ ptr[i - 5] + ptr[i - 4] + ptr[i - 3] + ptr[i - 2] +  ptr[i - 1] + ptr[i] + ptr[i + 7] + ptr[i + 6]+ ptr[i + 5] + ptr[i + 4] + ptr[i + 3] + ptr[i + 2] +  ptr[i + 1]);
-            //partial= partial + (ptr[i - 21] + ptr[i - 20] + ptr[i - 19] + ptr[i - 18]+ ptr[i - 17] + ptr[i - 16]+ptr[i - 15] + ptr[i - 14] + ptr[i - 13] + ptr[i - 12]+ ptr[i - 11] + ptr[i - 10] + ptr[i - 9]+ ptr[i - 8] + ptr[i - 7] + ptr[i - 6]+ ptr[i - 5] + ptr[i - 4] + ptr[i - 3] + ptr[i - 2] +  ptr[i - 1] + ptr[i] + ptr[i + 21] + ptr[i + 20] + ptr[i + 19] + ptr[i + 18]+ ptr[i + 17] + ptr[i + 16] + ptr[i + 15] + ptr[i + 14] + ptr[i + 13] + ptr[i + 12]+ ptr[i + 11] + ptr[i + 10] + ptr[i + 9]+ ptr[i + 8] + ptr[i + 7] + ptr[i + 6]+ ptr[i + 5] + ptr[i + 4] + ptr[i + 3] + ptr[i + 2] +  ptr[i + 1]);
-            //partial= partial + (ptr[i - 32] + ptr[i - 31] + ptr[i - 30] + ptr[i - 29] + ptr[i - 28] + ptr[i - 27]+ ptr[i - 26] + ptr[i - 25] + ptr[i - 24]+ ptr[i - 23] + ptr[i - 22] + ptr[i - 21]+ ptr[i - 20] + ptr[i - 19] + ptr[i - 18] +ptr[i - 17] + ptr[i - 16] + ptr[i - 15] + ptr[i - 14] + ptr[i - 13] + ptr[i - 12]+ ptr[i - 11] + ptr[i - 10] + ptr[i - 9]+ ptr[i - 8] + ptr[i - 7] + ptr[i - 6]+ ptr[i - 5] + ptr[i - 4] + ptr[i - 3] + ptr[i - 2] +  ptr[i - 1] + ptr[i] + ptr[i + 32] + ptr[i + 31] + ptr[i + 30] + ptr[i + 29] + ptr[i + 28] + ptr[i + 27]+ ptr[i + 26] + ptr[i + 25] + ptr[i + 24]+ ptr[i + 23] + ptr[i + 22] + ptr[i + 21]+ ptr[i + 20] + ptr[i + 19] + ptr[i + 18] +ptr[i + 17] + ptr[i + 16] + ptr[i + 15] + ptr[i + 14] + ptr[i + 13] + ptr[i + 12]+ ptr[i + 11] + ptr[i + 10] + ptr[i + 9]+ ptr[i + 8] + ptr[i + 7] + ptr[i + 6]+ ptr[i + 5] + ptr[i + 4] + ptr[i + 3] + ptr[i + 2] +  ptr[i + 1]);
+
           }
-          //res[i] = partial / 225; //Ventana de 15X15
           res[i] = partial / 729; //Ventana de 27X27
-          //res[i] = partial / 1849; //Ventana de 43X43
-          //res[i] = partial / 4225; //Ventana de 65X65
+
           partial=0;
         }
         cont=cont+1;
