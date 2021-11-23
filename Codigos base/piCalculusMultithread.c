@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<omp.h>
-static long num_pasos = 1000000;
+static long num_pasos = 100000000;
 double paso;
-#define NUM_THREADS 3
+#define NUM_THREADS 8
 void main()
 {
     int i, nthreads;
