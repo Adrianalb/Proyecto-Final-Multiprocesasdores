@@ -12,14 +12,8 @@ int main()
     const double startTime = omp_get_wtime();
     image = fopen("f3.bmp","rb");          //Imagen original a transformar
     outputImage = fopen("f3_b.bmp","wb");    //Imagen transformada
-    long ancho;
-    long alto;
-    int num_line=0;
-    int cont=0;
-    int beg_line=0;
-    int end_line=ancho;
-    int partial=0;
-    int x=1;
+    long ancho, alto;
+    int num_line=0, cont=0, beg_line=0, end_line=ancho, partial=0, x=1;
     int w_k = 13; //espacio para que la ventana entre completa
     unsigned char r, g, b;               //Pixel
     unsigned char* ptr;
